@@ -26,26 +26,27 @@ def start_process(path):
             select = int(input('type:'))
             if select == 1:
                 keyword = input('type name:')
-                print("not implemented yet")
+                useList = psm.filter_by_name(useList, keyword) # 기존 리스트를 keyword를 이용하여 필터 후 새로 저장
                 # fill this block
             elif select == 2:
                 keyword = input('type city:')
-                print("not implemented yet")
+                useList = psm.filter_by_city(useList, keyword) # 기존 리스트를 keyword를 이용하여 필터 후 새로 저장
                 # fill this block
             elif select == 3:
                 keyword = input('type district:')
-                print("not implemented yet")
+                useList = psm.filter_by_district(useList, keyword) # 기존 리스트를 keyword를 이용하여 필터 후 새로 저장
                 # fill this block
             elif select == 4:
                 keyword = input('type ptype:')
-                print("not implemented yet")
+                useList = psm.filter_by_ptype(useList, keyword) # 기존 리스트를 keyword를 이용하여 필터 후 새로 저장
                 # fill this block
             elif select == 5:
                 min_lat = float(input('type min lat:'))
                 max_lat = float(input('type max lat:'))
                 min_lon = float(input('type min long:'))
                 max_lon = float(input('type max long:'))
-                print("not implemented yet")
+                locationsTuple = (min_lat, max_lat, min_lon, max_lon) # 입력받은 값들을 튜플로 저장
+                useList = psm.filter_by_location(useList, locationsTuple) # 기존 리스트를 필터 후 새로 저장
                 # fill this block
             else:
                 print("invalid input")
@@ -65,4 +66,4 @@ def start_process(path):
         else:
             print("invalid input")
 
-start_process("./input/free_parking_spot_seoul.csv")
+start_process("./input/free_parking_spot.csv")

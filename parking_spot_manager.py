@@ -37,18 +37,43 @@ def print_spots(spots) :
         call = parking_spot.__str__(spots[i]) # call에 parking_spot의 메소드 __str__을 spots[i]를 매개변수로 하여 저장한다.
         print(call) # 바로 call을 print, for문으로 spots의 모든 요소를 끝까지 출력한다.
 
-# 각 단계별로 테스트 (테스트할때 주석해제 후 사용)
-if __name__ == '__main__':
-    print("Testing the module...")
-    # version#2
-    # import file_manager
-    # str_list = file_manager.read_file("./input/free_parking_spot_seoul.csv")
-    # spots = str_list_to_class_list(str_list)
-    # print_spots(spots)
 
-    # version#3
-    # spots = filter_by_district(spots, '동작')
-    # print_spots(spots)
+def filter_by_name(spots, name) :
+    retList = [spots[i] for i in range (0, len(spots)) if (name in parking_spot.get(spots[i], 'name')) == True] # for문과 parking_spot.get을 통해 spots[i]에 매개변수 name이 포함되어 있는지 확인 후 True라면 retList에 저장
+    return retList
+
+def filter_by_city(spots, city) :
+    retList = [spots[i] for i in range (0, len(spots)) if (city in parking_spot.get(spots[i], 'city')) == True] # for문과 parking_spot.get을 통해 spots[i]에 매개변수 city가 포함되어 있는지 확인 후 True라면 retList에 저장
+    return retList
+def filter_by_district(spots, district) :
+    retList = [spots[i] for i in range (0, len(spots)) if (district in parking_spot.get(spots[i], 'district')) == True] # for문과 parking_spot.get을 통해 spots[i]에 매개변수 district이 포함되어 있는지 확인 후 True라면 retList에 저장
+    return retList
+
+def filter_by_ptype(spots, ptype) :
+    retList = [spots[i] for i in range (0, len(spots)) if (ptype in parking_spot.get(spots[i], 'ptype')) == True] # for문과 parking_spot.get을 통해 spots[i]에 매개변수 ptype이 포함되어 있는지 확인 후 True라면 retList에 저장
+    return retList
+
+def filter_by_location(spots, locations) :
+    retList = [spots[i] for i in range (0, len(spots)) 
+               if (float(parking_spot.get(spots[i], 'latitude')) > float(locations[0])) 
+               and (float(parking_spot.get(spots[i], 'latitude')) < float(locations[1])) 
+               and (float(parking_spot.get(spots[i], 'longitude')) > float(locations[2]))
+               and (float(parking_spot.get(spots[i], 'longitude')) < float(locations[3]))
+               ] # for문과 parking_spot.get을 통해 spots[i]의 값들이 각각 최대, 최솟값 사이에 있는 지 확인 후 맞다면 저장
+    return retList
+
+# 각 단계별로 테스트 (테스트할때 주석해제 후 사용)
+# if __name__ == '__main__':
+#     print("Testing the module...")
+#     # version#2
+#     import file_manager
+#     str_list = file_manager.read_file("./input/free_parking_spot.csv")
+#     spots = str_list_to_class_list(str_list)
+#     print_spots(spots)
+
+#     # version#3
+#     spots = filter_by_district(spots, '동작')
+#     print_spots(spots)
     
     # version#4
     # spots = sort_by_keyword(spots, 'name')
